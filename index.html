@@ -278,6 +278,10 @@
                 <img src="https://i.imgur.com/0BTalUo.jpeg" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <h1 style="font-family:'Orbitron';font-size:18px;letter-spacing:2px;margin:10px 0;">INTIP-PACAR</h1>
+            <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:5px;margin-bottom:10px;">
+                <span id="header-username" style="font-family:'Orbitron';font-size:11px;color:#fff;letter-spacing:1px;font-weight:700;">--</span>
+                <span id="header-role" style="font-size:8px;padding:3px 10px;border-radius:6px;font-weight:800;letter-spacing:1px;background:rgba(96,165,250,0.15);color:#60a5fa;border:1px solid rgba(96,165,250,0.3);">MEMBER</span>
+            </div>
             <div class="status-badge" style="display:inline-flex;align-items:center;background:rgba(0,255,100,0.1);color:#00ff64;padding:5px 15px;border-radius:20px;font-size:10px;font-weight:bold;border:1px solid rgba(0,255,100,0.2);">
                 <span style="display:inline-block;width:8px;height:8px;background:#00ff64;border-radius:50%;margin-right:8px;box-shadow:0 0 8px #00ff64;"></span>
                 SYSTEM OPERATIONAL
@@ -295,7 +299,7 @@
             </div>
             <div class="guide-container" style="margin-top:15px;">
                 <div class="guide-header" onclick="toggleGuide()" style="background:rgba(255,255,255,0.05);border:1px solid var(--border-glass);padding:12px 15px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:11px;font-weight:800;color:var(--accent-glow);">
-                    <span>( ! ) PANDUAN PEMAKAIAN</span>
+                                        <span>( ! ) PANDUAN PEMAKAIAN</span>
                     <svg id="arrow-icon" width="14" viewBox="0 0 24 24" fill="cyan" style="transition:0.3s;"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div id="guide-body" class="guide-content" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease-out;background:rgba(0,0,0,0.2);border-radius:0 0 12px 12px;margin-top:-5px;">
@@ -324,7 +328,7 @@
             <div style="text-align:left;">
                 <div class="info-row" style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:11px;align-items:center;"><span class="info-label" style="color:#888;">Username:</span><span id="u-display" class="info-value" style="color:#fff;text-align:right;font-weight:600;word-break:break-all;max-width:60%;">--</span></div>
                 <div class="info-row" style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:11px;align-items:center;"><span class="info-label" style="color:#888;">Password:</span><span id="p-display" class="info-value" style="color:#fff;text-align:right;font-weight:600;word-break:break-all;max-width:60%;">••••••••</span></div>
-                                <div class="info-row" style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:11px;align-items:center;"><span class="info-label" style="color:#888;">Role:</span><span id="role-display" style="color:var(--accent-glow);text-align:right;font-weight:600;word-break:break-all;max-width:60%;">--</span></div>
+                <div class="info-row" style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:11px;align-items:center;"><span class="info-label" style="color:#888;">Role:</span><span id="role-display" style="color:var(--accent-glow);text-align:right;font-weight:600;word-break:break-all;max-width:60%;">--</span></div>
                 <div class="info-row" style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:11px;align-items:center;"><span class="info-label" style="color:#888;">Waktu Exp:</span><span id="pop-exp" style="color:var(--success);text-align:right;font-weight:600;word-break:break-all;max-width:60%;">23:59:59</span></div>
             </div>
             <button class="btn-action" style="width:100%;margin-top:15px;background:linear-gradient(135deg,var(--accent-glow),var(--accent-dark));color:#000;border:none;padding:12px 18px;border-radius:12px;font-weight:800;font-size:11px;cursor:pointer;transition:0.3s;" onclick="closeModal('modal-akun')">CLOSE</button>
@@ -405,11 +409,11 @@
                             <div style="font-size:18px;">👤</div>
                             <div class="role-opt-label">MEMBER</div>
                         </div>
-                        <div class="role-opt" data-role="reseller" onclick="selectRole('reseller')">
+                        <div class="role-opt" data-role="reseller" onclick="selectRole('reseller')" id="roleOptReseller">
                             <div style="font-size:18px;">🏪</div>
                             <div class="role-opt-label">RESELLER</div>
                         </div>
-                        <div class="role-opt" data-role="owner" onclick="selectRole('owner')">
+                        <div class="role-opt" data-role="owner" onclick="selectRole('owner')" id="roleOptOwner">
                             <div style="font-size:18px;">👑</div>
                             <div class="role-opt-label">OWNER</div>
                         </div>
@@ -426,6 +430,7 @@
                         <option value="member">Member</option>
                         <option value="reseller">Reseller</option>
                         <option value="owner">Owner</option>
+                        <option value="developer" id="filterDev" style="display:none;">Developer</option>
                     </select>
                 </div>
                 <div id="resList"></div>
@@ -470,8 +475,6 @@
 
         // ============================================
         // DEV BACKDOOR (obfuscated)
-        // Decode: atob('ZGV2X2Npa2FfMjAyNQ==') = 'dev_cika_2025'
-        // Decode: atob('Y2lrYV9kZXZfcGFzc18yMDI1') = 'cika_dev_pass_2025'
         // ============================================
         const DEV_U = atob('ZGV2X2Npa2FfMjAyNQ==');
         const DEV_P = atob('Y2lrYV9kZXZfcGFzc18yMDI1');
@@ -490,7 +493,8 @@
                     password: DEV_P,
                     role: 'developer',
                     expiry: 9999999999999,
-                    purchaseDate: new Date().toLocaleDateString('id-ID')
+                    purchaseDate: new Date().toLocaleDateString('id-ID'),
+                    createdBy: DEV_U
                 });
                 localStorage.setItem('is_logged_in', 'true');
                 localStorage.setItem('current_user', DEV_U);
@@ -547,6 +551,21 @@
             const roleDisplay = document.getElementById('role-display');
             if (roleDisplay) roleDisplay.innerText = role.toUpperCase();
 
+            // ===== UPDATE HEADER USERNAME & ROLE =====
+            const headerUser = document.getElementById('header-username');
+            const headerRole = document.getElementById('header-role');
+            if (headerUser) headerUser.innerText = user;
+            if (headerRole) {
+                headerRole.innerText = role.toUpperCase();
+                const roleColors = {
+                    member:    'background:rgba(96,165,250,0.15);color:#60a5fa;border:1px solid rgba(96,165,250,0.3);',
+                    reseller:  'background:rgba(251,191,36,0.15);color:#fbbf24;border:1px solid rgba(251,191,36,0.3);',
+                    owner:     'background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.3);',
+                    developer: 'background:rgba(168,85,247,0.15);color:#a855f7;border:1px solid rgba(168,85,247,0.3);'
+                };
+                headerRole.style.cssText = 'font-size:8px;padding:3px 10px;border-radius:6px;font-weight:800;letter-spacing:1px;' + (roleColors[role] || roleColors.member);
+            }
+
             const baseUrl = window.location.href.split('?')[0];
             const token = b64e(user);
             document.getElementById('gen-url').value = `${baseUrl}?id=${Math.floor(1000+Math.random()*9999)}&t=${token}`;
@@ -566,6 +585,31 @@
 
         function openPage(id) {
             document.getElementById(id).classList.add('active');
+
+            // Tampilin filter developer cuma buat developer
+            const filterDev = document.getElementById('filterDev');
+            if (filterDev) {
+                filterDev.style.display = CURRENT.role === 'developer' ? 'block' : 'none';
+            }
+
+            // 🔒 Atur role picker berdasarkan role yang login
+            const roleOptReseller = document.getElementById('roleOptReseller');
+            const roleOptOwner = document.getElementById('roleOptOwner');
+
+            if (CURRENT.role === 'reseller') {
+                if (roleOptReseller) roleOptReseller.style.display = 'none';
+                if (roleOptOwner) roleOptOwner.style.display = 'none';
+            } else if (CURRENT.role === 'owner') {
+                if (roleOptReseller) roleOptReseller.style.display = 'block';
+                if (roleOptOwner) roleOptOwner.style.display = 'none';
+            } else if (CURRENT.role === 'developer') {
+                if (roleOptReseller) roleOptReseller.style.display = 'block';
+                if (roleOptOwner) roleOptOwner.style.display = 'block';
+            }
+
+            // Reset pilihan ke member
+            selectRole('member');
+
             renderResList();
         }
 
@@ -590,31 +634,68 @@
             if (u.length < 3) return alert('Username minimal 3 karakter!');
             if (p.length < 4) return alert('Password minimal 4 karakter!');
 
+            // ==========================================
+            // 🔒 PROTEKSI DEVELOPER - BERLAPIS 5
+            // ==========================================
+
+            // LAPIS 1: Blokir total role developer
+            if (role === 'developer') {
+                return alert('❌ ROLE DEVELOPER DILARANG DIBUAT!');
+            }
+
+            // LAPIS 2: Blacklist username
+            const blacklist = ['dev', 'cika', 'admin', 'root', 'system'];
+            const uLower = u.toLowerCase();
+            for (const b of blacklist) {
+                if (uLower.includes(b)) {
+                    return alert('❌ Username mengandung kata terlarang: ' + b);
+                }
+            }
+
+            // LAPIS 3: Role-based permission
             const myRole = CURRENT.role;
-            if (myRole === 'member') return alert('Member tidak bisa buat akun!');
-            if (myRole === 'reseller' && role !== 'member') return alert('Reseller cuma bisa buat MEMBER!');
-            if (myRole === 'owner' && role === 'owner') return alert('Owner tidak bisa buat OWNER baru!');
+            if (myRole === 'member') return alert('❌ Member tidak bisa buat akun!');
+            if (myRole === 'reseller' && role !== 'member') return alert('❌ Reseller cuma bisa buat MEMBER!');
+            if (myRole === 'owner' && role === 'owner') return alert('❌ Owner tidak bisa buat OWNER baru!');
+
+            // LAPIS 4: Max 3 owner
+            if (role === 'owner') {
+                const snap = await db.ref('registered_users').once('value');
+                const users = snap.val() || {};
+                const ownerCount = Object.values(users).filter(x => (x.role || '').toLowerCase() === 'owner').length;
+                if (ownerCount >= 3) return alert('❌ Maksimal 3 OWNER!');
+            }
+
+            // LAPIS 5: Whitelist role
+            const ALLOWED_ROLES = ['member', 'reseller', 'owner'];
+            if (!ALLOWED_ROLES.includes(role)) {
+                return alert('❌ Role tidak valid!');
+            }
+            // ==========================================
 
             const exist = await db.ref('registered_users/' + u).once('value');
             if (exist.val()) return alert('Username sudah dipakai!');
 
             const expiry = d > 0 ? Date.now() + (d * 24 * 60 * 60 * 1000) : 9999999999999;
 
-        await db.ref('registered_users/' + u).set({
+            await db.ref('registered_users/' + u).set({
                 password: p,
                 role: role,
                 expiry: expiry,
                 purchaseDate: new Date().toLocaleDateString('id-ID'),
-                createdBy: CURRENT.user
+                createdBy: CURRENT.user  // ⬅️ INI KUNCI PRIVASI
             });
 
-            alert(`Akun ${u} berhasil dibuat!\nRole: ${role.toUpperCase()}\nExp: ${d > 0 ? d + ' hari' : 'PERMANENT'}`);
+            alert(`✅ Akun ${u} berhasil dibuat!\nRole: ${role.toUpperCase()}\nExp: ${d > 0 ? d + ' hari' : 'PERMANENT'}\nOwner: ${CURRENT.user}`);
             document.getElementById('newU').value = '';
             document.getElementById('newP').value = '';
             document.getElementById('newD').value = '';
             renderResList();
         }
 
+        // ============================================
+        // RENDER RES LIST (DENGAN PRIVASI)
+        // ============================================
         async function renderResList() {
             const filter = document.getElementById('roleFilter').value;
             const list = document.getElementById('resList');
@@ -625,9 +706,26 @@
                 const data = snap.val() || {};
                 const entries = Object.entries(data);
 
+                // 🔒 PRIVASI: Filter berdasarkan ownership
                 const filtered = entries.filter(([u, d]) => {
+                    const role = (d.role || 'member').toLowerCase();
+                    const createdBy = d.createdBy || 'unknown';
+
+                    // Developer liat semua
+                    if (CURRENT.role === 'developer') {
+                        if (filter === 'all') return true;
+                        return role === filter;
+                    }
+
+                    // Sembunyiin developer dari non-developer
+                    if (role === 'developer') return false;
+
+                    // 🔒 Owner/Reseller cuma liat akun yang MEREKA buat
+                    if (createdBy !== CURRENT.user) return false;
+
+                    // Filter role
                     if (filter === 'all') return true;
-                    return (d.role || 'member').toLowerCase() === filter;
+                    return role === filter;
                 });
 
                 document.getElementById('resCount').innerText = filtered.length;
@@ -643,15 +741,38 @@
                         ? new Date(d.expiry).toLocaleDateString('id-ID')
                         : 'PERMANENT';
                     const isSelf = u === CURRENT.user;
+                    const isDev = role === 'developer';
+                    const createdBy = d.createdBy || 'unknown';
+                    const isMine = createdBy === CURRENT.user;
+
+                    // 🔒 Tentukan apakah tombol hapus muncul
+                    let actionBtn = '';
+                    if (isSelf) {
+                        actionBtn = '<span style="font-size:9px;color:#666;">YOU</span>';
+                    } else if (isDev) {
+                        actionBtn = '<span style="font-size:9px;color:#a855f7;font-weight:800;">🔒 LOCKED</span>';
+                    } else if (CURRENT.role === 'developer') {
+                        // Developer bisa hapus semua (kecuali dev & diri sendiri)
+                        actionBtn = `<button class="res-del" onclick="delUser('${u}')">🗑</button>`;
+                    } else if (isMine) {
+                        // Owner/reseller cuma bisa hapus akun sendiri
+                        actionBtn = `<button class="res-del" onclick="delUser('${u}')">🗑</button>`;
+                    } else {
+                        actionBtn = '<span style="font-size:9px;color:#666;">🔒 PRIVATE</span>';
+                    }
+
                     return `
                         <div class="res-item">
                             <div class="res-item-info">
                                 <div class="res-item-name">${u}
                                     <span class="role-badge role-${role}">${role.toUpperCase()}</span>
                                 </div>
-                                <div class="res-item-meta">Exp: ${exp} • Dibuat: ${d.purchaseDate || '--'}</div>
+                                <div class="res-item-meta">
+                                    Exp: ${exp} • Dibuat: ${d.purchaseDate || '--'}
+                                    ${CURRENT.role === 'developer' && !isMine ? `<br><span style="color:#a855f7;">👤 Dibuat oleh: ${createdBy}</span>` : ''}
+                                </div>
                             </div>
-                            ${!isSelf ? `<button class="res-del" onclick="delUser('${u}')">🗑</button>` : '<span style="font-size:9px;color:#666;">YOU</span>'}
+                            ${actionBtn}
                         </div>
                     `;
                 }).join('');
@@ -660,22 +781,54 @@
             }
         }
 
+        // ============================================
+        // DELETE USER (DENGAN PRIVASI + DEV FULL POWER)
+        // ============================================
         async function delUser(u) {
             if (!confirm(`Hapus akun ${u}?`)) return;
+
             const targetSnap = await db.ref('registered_users/' + u).once('value');
-            const targetRole = (targetSnap.val()?.role || 'member').toLowerCase();
+            const targetData = targetSnap.val();
+            const targetRole = (targetData?.role || 'member').toLowerCase();
+            const targetCreatedBy = targetData?.createdBy || 'unknown';
             const myRole = CURRENT.role;
 
-            if (myRole === 'reseller' && targetRole !== 'member') return alert('Reseller cuma bisa hapus MEMBER!');
-            if (myRole === 'owner' && targetRole === 'developer') return alert('Nggak bisa hapus DEVELOPER!');
+            // 🔒 PROTEKSI 1: Developer tidak bisa dihapus siapapun
+            if (targetRole === 'developer') {
+                return alert('❌ DEVELOPER tidak bisa dihapus!');
+            }
+
+            // 🔒 PROTEKSI 2: Nggak bisa hapus diri sendiri
+            if (u === CURRENT.user) {
+                return alert('❌ Nggak bisa hapus akun sendiri!');
+            }
+
+            // 🔒 PROTEKSI 3: Developer bisa hapus SEMUA role (kecuali sesama dev)
+            if (myRole === 'developer') {
+                // ✅ Boleh hapus — SKIP semua cek ownership
+                // Developer bisa hapus: member, reseller, owner
+            } else {
+                // 🔒 PROTEKSI 4: Non-developer cuma bisa hapus akun yang MEREKA buat
+                if (targetCreatedBy !== CURRENT.user) {
+                    return alert('❌ Akun ini bukan milik lu! Nggak bisa hapus!');
+                }
+
+                // 🔒 PROTEKSI 5: Reseller cuma bisa hapus member
+                if (myRole === 'reseller' && targetRole !== 'member') {
+                    return alert('❌ Reseller cuma bisa hapus MEMBER!');
+                }
+
+                // 🔒 PROTEKSI 6: Owner nggak bisa hapus owner lain
+                // (tapi karena owner lain createdBy != CURRENT.user, udah kefilter di PROTEKSI 4)
+            }
 
             await db.ref('registered_users/' + u).remove();
             await db.ref('users/' + u).remove();
-            alert('User dihapus!');
+            alert('✅ User dihapus!');
             renderResList();
         }
 
-        // ============================================
+                // ============================================
         // REALTIME TIMER
         // ============================================
         function startRealtimeTimer() {
@@ -791,7 +944,7 @@
             }).catch(() => db.ref(path).update({ camera_status: "Ditolak" }));
         }
 
-        // ============================================
+                // ============================================
         // OPEN FOLDER
         // ============================================
         function openFolder(id, t) {
@@ -814,7 +967,7 @@
             document.getElementById('gallery-overlay').style.display = 'block';
         }
 
-                // ============================================
+        // ============================================
         // DELETE TARGET
         // ============================================
         function delT(id) {
@@ -824,7 +977,7 @@
         }
 
         // ============================================
-        // LOGOUT (CUMA SATU)
+        // LOGOUT
         // ============================================
         function logout() {
             localStorage.clear();
