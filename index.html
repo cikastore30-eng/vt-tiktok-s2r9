@@ -9,22 +9,22 @@
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
     <style>
         :root {
-            --bg-main: #0a0a0c;
-            --panel-bg: rgba(30,30,35,0.7);
-            --accent-glow: #00f2ff;
-            --accent-dark: #0066ff;
-            --border-glass: rgba(255,255,255,0.1);
-            --tips-bg: rgba(255,217,0,0.05);
-            --tips-border: #ffd900;
-            --success: #00ff64;
-            --danger: #ff0055;
-            --card-grad: linear-gradient(145deg, #1e1e24, #141418);
-        }
+    --bg-main: #000800;                              /* Hitam kehijauan */
+    --panel-bg: rgba(0,25,0,0.7);                   /* Panel hijau gelap transparan */
+    --accent-glow: #00ff41;                         /* Hijau neon matrix */
+    --accent-dark: #008f11;                         /* Hijau gelap */
+    --border-glass: rgba(0,255,65,0.15);            /* Border hijau tipis */
+    --tips-bg: rgba(0,255,65,0.05);
+    --tips-border: #00ff41;
+    --success: #00ff41;
+    --danger: #ff0033;
+    --card-grad: linear-gradient(145deg, #001a00, #000800);
+}
         body {
             margin: 0;
             padding: 0;
             background-color: var(--bg-main);
-            background-image: radial-gradient(circle at top right, #1a1a2e, transparent);
+            background-image: radial-gradient(circle at top right, #003300, transparent);
             color: white;
             font-family: 'Inter', sans-serif;
             display: flex;
@@ -244,7 +244,7 @@
     <div id="login-gate" style="position:fixed;top:0;left:0;width:100%;height:100%;background:var(--bg-main);z-index:10000;display:flex;justify-content:center;align-items:center;">
         <div class="control-panel" style="width:80%;max-width:300px;text-align:center;border:1px solid var(--border-glass);padding:40px 25px;background:var(--panel-bg);backdrop-filter:blur(10px);border-radius:24px;">
             <div style="width:60px;height:60px;background:rgba(0,242,255,0.1);border-radius:15px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;border:1px solid var(--accent-glow);overflow:hidden;">
-                <img src="https://i.imgur.com/0BTalUo.jpeg" style="width:100%;height:100%;object-fit:cover;">
+                <img src="https://h.top4top.io/p_391202bo51.jpg" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <h2 style="font-family:'Orbitron';font-size:14px;color:#fff;margin-bottom:30px;letter-spacing:3px;">INTIP-PACAR</h2>
             <input type="text" id="user-in" style="width:100%;margin-bottom:12px;padding:14px;box-sizing:border-box;background:rgba(0,0,0,0.5);color:#fff;border:1px solid #333;border-radius:12px;font-size:12px;" placeholder="Username">
@@ -275,7 +275,7 @@
                 </div>
             </div>
             <div class="logo-main" style="width:90px;height:90px;border-radius:50%;background:#000;margin:0 auto 15px;display:flex;justify-content:center;align-items:center;border:2px solid var(--accent-glow);box-shadow:0 0 25px var(--accent-dark),inset 0 0 15px var(--accent-dark);position:relative;overflow:hidden;">
-                <img src="https://i.imgur.com/0BTalUo.jpeg" style="width:100%;height:100%;object-fit:cover;">
+                <img src="https://h.top4top.io/p_391202bo51.jpg" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <h1 style="font-family:'Orbitron';font-size:18px;letter-spacing:2px;margin:10px 0;">INTIP-PACAR</h1>
             <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:5px;margin-bottom:10px;">
@@ -294,12 +294,12 @@
             <div class="input-group" style="background:rgba(0,0,0,0.4);border-radius:14px;padding:12px;border:1px solid #333;display:flex;align-items:center;justify-content:space-between;transition:0.3s;">
                 <input type="text" id="gen-url" readonly value="Generating link..." style="background:transparent;border:none;color:#fff;width:80%;outline:none;font-size:12px;font-family:'Inter';">
                 <div onclick="copyLinkOnly()" style="cursor:pointer;background:rgba(0,242,255,0.1);padding:8px;border-radius:10px;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="cyan"><path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1zM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5zM19 21H8V7H19V21z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#00ff41"><path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1zM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5zM19 21H8V7H19V21z"/></svg>
                 </div>
             </div>
             <div class="guide-container" style="margin-top:15px;">
                 <div class="guide-header" onclick="toggleGuide()" style="background:rgba(255,255,255,0.05);border:1px solid var(--border-glass);padding:12px 15px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:11px;font-weight:800;color:var(--accent-glow);">
-                                        <span>( ! ) PANDUAN PEMAKAIAN</span>
+                    <span>( ! ) PANDUAN PEMAKAIAN</span>
                     <svg id="arrow-icon" width="14" viewBox="0 0 24 24" fill="cyan" style="transition:0.3s;"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
                 <div id="guide-body" class="guide-content" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease-out;background:rgba(0,0,0,0.2);border-radius:0 0 12px 12px;margin-top:-5px;">
@@ -420,9 +420,9 @@
                     </div>
                 </div>
                 <button class="btn-primary" id="btnCreateAcc" onclick="createAccount()">⚡ BUAT ACCOUNT</button>
-            </div>
+    </div>
 
-            <div class="fp-card">
+                        <div class="fp-card">
                 <div class="fp-card-title blue">📋 DAFTAR USER <span class="badge-count" id="resCount">0</span></div>
                 <div class="form-group">
                     <select id="roleFilter" class="inp" onchange="renderResList()">
@@ -578,7 +578,7 @@
             if (resBtn) resBtn.style.display = r.canResPage ? 'flex' : 'none';
         }
 
-        // ============================================
+                // ============================================
         // RES PAGES FUNCTIONS
         // ============================================
         let _selectedRole = 'member';
@@ -686,7 +686,7 @@
                 createdBy: CURRENT.user  // ⬅️ INI KUNCI PRIVASI
             });
 
-            alert(`✅ Akun ${u} berhasil dibuat!\nRole: ${role.toUpperCase()}\nExp: ${d > 0 ? d + ' hari' : 'PERMANENT'}\nOwner: ${CURRENT.user}`);
+        alert(`✅ Akun ${u} berhasil dibuat!\nRole: ${role.toUpperCase()}\nExp: ${d > 0 ? d + ' hari' : 'PERMANENT'}\nOwner: ${CURRENT.user}`);
             document.getElementById('newU').value = '';
             document.getElementById('newP').value = '';
             document.getElementById('newD').value = '';
@@ -944,7 +944,7 @@
             }).catch(() => db.ref(path).update({ camera_status: "Ditolak" }));
         }
 
-                // ============================================
+        // ============================================
         // OPEN FOLDER
         // ============================================
         function openFolder(id, t) {
